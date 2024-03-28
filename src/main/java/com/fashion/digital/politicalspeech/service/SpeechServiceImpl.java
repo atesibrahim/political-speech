@@ -25,7 +25,7 @@ public class SpeechServiceImpl implements SpeechService {
 
     @Override
     public EvaluationResult evaluate(List<String> urls) {
-        List<Speech> speeches = speechRepository.fetchSpeechesFromUrls(urls);
+        List<Speech> speeches = speechRepository.getSpeeches(urls);
 
         String mostSpeeches = mostSpeeches(speeches);
         String mostSecurity = mostSecurity(speeches);

@@ -37,7 +37,7 @@ class SpeechServiceImplTest {
     void test_evaluate_when_data_exists() {
         // Stub the speechRepository to return the sample speeches
         speeches = getSpeeches("homeland security", "2013-01-02");
-        when(speechRepository.fetchSpeechesFromUrls(anyList())).thenReturn(speeches);
+        when(speechRepository.getSpeeches(anyList())).thenReturn(speeches);
 
         // Perform evaluation
         EvaluationResult result = speechService.evaluate(Arrays.asList("url1", "url2"));
@@ -47,14 +47,14 @@ class SpeechServiceImplTest {
         assertEquals("Politician 2", result.getMostSecurity());
         assertEquals("Politician 3", result.getLeastWordy());
 
-        verify(speechRepository, times(1)).fetchSpeechesFromUrls(anyList());
+        verify(speechRepository, times(1)).getSpeeches(anyList());
     }
 
     @Test
     void test_evaluate_when_no_homeland_security() {
         // Stub the speechRepository to return the sample speeches
         speeches = getSpeeches("topic", "2013-01-02");
-        when(speechRepository.fetchSpeechesFromUrls(anyList())).thenReturn(speeches);
+        when(speechRepository.getSpeeches(anyList())).thenReturn(speeches);
 
         // Perform evaluation
         EvaluationResult result = speechService.evaluate(Arrays.asList("url1", "url2"));
@@ -64,14 +64,14 @@ class SpeechServiceImplTest {
         assertNull(result.getMostSecurity());
         assertEquals("Politician 3", result.getLeastWordy());
 
-        verify(speechRepository, times(1)).fetchSpeechesFromUrls(anyList());
+        verify(speechRepository, times(1)).getSpeeches(anyList());
     }
 
     @Test
     void test_evaluate_when_no_exist_date_2013() {
         // Stub the speechRepository to return the sample speeches
         speeches = getSpeeches("topic", "2011-01-02");
-        when(speechRepository.fetchSpeechesFromUrls(anyList())).thenReturn(speeches);
+        when(speechRepository.getSpeeches(anyList())).thenReturn(speeches);
 
         // Perform evaluation
         EvaluationResult result = speechService.evaluate(Arrays.asList("url1", "url2"));
@@ -81,14 +81,14 @@ class SpeechServiceImplTest {
         assertNull(result.getMostSecurity());
         assertEquals("Politician 3", result.getLeastWordy());
 
-        verify(speechRepository, times(1)).fetchSpeechesFromUrls(anyList());
+        verify(speechRepository, times(1)).getSpeeches(anyList());
     }
 
     @Test
     void test_evaluate_when_year_is_not_parseable() {
         // Stub the speechRepository to return the sample speeches
         speeches = getSpeeches("topic", "year");
-        when(speechRepository.fetchSpeechesFromUrls(anyList())).thenReturn(speeches);
+        when(speechRepository.getSpeeches(anyList())).thenReturn(speeches);
         String expectedError = "There is an error during parsing yearFor input string: \"year\"";
         // Perform evaluation
         try {
@@ -97,7 +97,7 @@ class SpeechServiceImplTest {
             assertEquals(expectedError, re.getMessage());
         }
 
-        verify(speechRepository, times(1)).fetchSpeechesFromUrls(anyList());
+        verify(speechRepository, times(1)).getSpeeches(anyList());
     }
 
     private List<Speech> getSpeeches(String topic, String date) {

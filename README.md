@@ -1,6 +1,6 @@
 ### Political Speech Application
 
-This application runs on port 8080 by default. You can change the port by passing the `--server.port` argument to the application.
+This application runs on port 8081 by default. You can change the port by passing the `--server.port` argument to the application.
 
 The application exposes one endpoint:
 `/evaluation?url1={url1}&url2={url2}`. It returns a json body of statistics for the given urls such as:
@@ -24,16 +24,14 @@ This provides extremely fast way to store and retrieve data.
 For calculating statistics collections(map) and stream are being used.
 
 ### Running the app
-`java -jar political-speech.jar --server.port=8080`
-
 Once the server is running you can check the results at via postman or any other rest client at
-```http://localhost:8080/evaluation?url1=https://raw.githubusercontent.com/atesibrahim/csv-files/main/file1.csv&url2=https://raw.githubusercontent.com/atesibrahim/csv-files/main/file2.csv```
+```http://localhost:8081/evaluation?url1=https://raw.githubusercontent.com/atesibrahim/csv-files/main/file1.csv&url2=https://raw.githubusercontent.com/atesibrahim/csv-files/main/file2.csv```
 
 you can use the following curl command:
-```curl --location --request GET 'http://localhost:8080/evaluation?url1=https://raw.githubusercontent.com/atesibrahim/csv-files/main/file1.csv&url2=https://raw.githubusercontent.com/atesibrahim/csv-files/main/file2.csv'```
+```curl --location --request GET 'http://localhost:8081/evaluation?url1=https://raw.githubusercontent.com/atesibrahim/csv-files/main/file1.csv&url2=https://raw.githubusercontent.com/atesibrahim/csv-files/main/file2.csv'```
 
 or you can see on swagger openapi page at:
-```http://localhost:8080/swagger-ui.html```
+```http://localhost:8081/swagger-ui.html```
 
 ![swagger](src/main/resources/static/swagger.png)
 

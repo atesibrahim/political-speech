@@ -23,7 +23,7 @@ class SpeechRepositoryImplTest {
     void test_fetch_speeches() {
         String url = "https://raw.githubusercontent.com/atesibrahim/csv-files/main/file2.csv";
 
-        List<Speech> result = speechRepository.fetchSpeechesFromUrls(List.of(url));
+        List<Speech> result = speechRepository.getSpeeches(List.of(url));
 
         assertEquals(4, result.size());
     }
@@ -32,7 +32,7 @@ class SpeechRepositoryImplTest {
     void test_fetch_speeches_when_file_is_corrupted() {
         String url = "https://raw.githubusercontent.com/atesibrahim/csv-files/main/corrupted_file.csv";
         try {
-            speechRepository.fetchSpeechesFromUrls(List.of(url));
+            speechRepository.getSpeeches(List.of(url));
         } catch (RuntimeException re) {
             assertEquals(FILE_FORMAT_ERROR, re.getMessage());
         }
@@ -43,7 +43,7 @@ class SpeechRepositoryImplTest {
         String url = "https://raw.githubusercontent.com/atesibrahim/csv-files/main/corrupted_file2.csv";
 
         try {
-            speechRepository.fetchSpeechesFromUrls(List.of(url));
+            speechRepository.getSpeeches(List.of(url));
         } catch (RuntimeException re) {
             assertEquals(DATE_FORMAT_ERROR, re.getMessage());
         }
@@ -55,7 +55,7 @@ class SpeechRepositoryImplTest {
         String expectedError = FILE_READ_ERROR + "Server returned HTTP response code: 400 for URL: https://raw.githubusercontent.com/atesibrahim/file2.csv";
 
         try{
-            speechRepository.fetchSpeechesFromUrls(List.of(url));
+            speechRepository.getSpeeches(List.of(url));
         } catch (RuntimeException re) {
             assertEquals(expectedError,  re.getMessage());
         }

@@ -25,12 +25,12 @@ public class SpeechRepositoryImpl implements SpeechRepository {
     final List<Speech> speeches = new ArrayList<>();
 
     @Override
-    public List<Speech> fetchSpeechesFromUrls(List<String> urls) {
-        for (String url : urls) saveToListFromUrl(url);
+    public List<Speech> getSpeeches(List<String> urls) {
+        for (String url : urls) saveSpeeches(url);
         return speeches;
     }
 
-    private void saveToListFromUrl(String url) {
+    private void saveSpeeches(String url) {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(url).openStream()))) {
             String line;
             while ((line = reader.readLine()) != null) {
